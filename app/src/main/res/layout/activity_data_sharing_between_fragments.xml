@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DataSharingBetweenFragments">
+    tools:context=".activities.DataSharingBetweenFragmentsActivity">
 
     <FrameLayout
         android:layout_weight="1"
@@ -16,7 +16,7 @@
             android:id="@+id/first_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.androidcodeshop.activityandfragmentlifecycle.FirstFragment"/>
+            android:name="com.androidcodeshop.activityandfragmentlifecycle.fragments.FirstFragment"/>
     </FrameLayout>
     <FrameLayout
         android:layout_weight="1"
@@ -26,6 +26,6 @@
             android:id="@+id/second_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.androidcodeshop.activityandfragmentlifecycle.SecondFragment"/>
+            android:name="com.androidcodeshop.activityandfragmentlifecycle.fragments.SecondFragment"/>
     </FrameLayout>
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.androidcodeshop.activityandfragmentlifecycle;
+package com.androidcodeshop.activityandfragmentlifecycle.viewmodels;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;

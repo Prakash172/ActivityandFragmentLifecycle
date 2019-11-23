@@ -1,9 +1,11 @@
-package com.androidcodeshop.activityandfragmentlifecycle;
+package com.androidcodeshop.activityandfragmentlifecycle.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import com.androidcodeshop.activityandfragmentlifecycle.R;
 
 public class SecondActivity extends AppCompatActivity {
 

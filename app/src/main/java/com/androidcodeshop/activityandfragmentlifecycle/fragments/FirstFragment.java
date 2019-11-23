@@ -1,6 +1,7 @@
-package com.androidcodeshop.activityandfragmentlifecycle;
+package com.androidcodeshop.activityandfragmentlifecycle.fragments;
 
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,21 +10,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
+
+import com.androidcodeshop.activityandfragmentlifecycle.R;
+import com.androidcodeshop.activityandfragmentlifecycle.viewmodels.SharedViewModel;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SecondFragment extends Fragment {
+public class FirstFragment extends Fragment {
 
 
-    public SecondFragment() {
+    public FirstFragment() {
         // Required empty public constructor
     }
 
-
     SharedViewModel sharedViewModel;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,23 +38,19 @@ public class SecondFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_second, container, false);
+        View view = inflater.inflate(R.layout.fragment_first, container, false);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button button = view.findViewById(R.id.increase_count_btn);
-        button.setOnClickListener(new View.OnClickListener() {
+        final TextView counter = view.findViewById(R.id.counter_tv);
+        sharedViewModel.getCountLiveData().observe(this, new Observer<Integer>() {
             @Override
-            public void onClick(View v) {
-                // write increase logic
-                if(sharedViewModel.getCountLiveData() != null) {
-                    int current = sharedViewModel.getCountLiveData().getValue();
-                    current += 1;
-                    sharedViewModel.setCount(current);
-                }
+            public void onChanged(@Nullable Integer integer) {
+                if (integer != null)
+                    counter.setText(String.valueOf(integer));
             }
         });
     }

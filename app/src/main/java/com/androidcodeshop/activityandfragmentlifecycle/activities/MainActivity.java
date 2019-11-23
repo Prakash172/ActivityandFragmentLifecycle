@@ -1,8 +1,8 @@
-package com.androidcodeshop.activityandfragmentlifecycle;
+package com.androidcodeshop.activityandfragmentlifecycle.activities;
 
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,27 +10,40 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.androidcodeshop.activityandfragmentlifecycle.databinding.ActivityMainBinding;
+import com.androidcodeshop.activityandfragmentlifecycle.viewmodels.MainActivityViewModel;
+import com.androidcodeshop.activityandfragmentlifecycle.R;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     MainActivityViewModel viewModel;
     Button nextButton;
-
+    ActivityMainBinding binding ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+
         Log.d(TAG, "onCreate: called");
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
-        nextButton = findViewById(R.id.next_button);
-        nextButton.setOnClickListener(new View.OnClickListener() {
+
+        binding.nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
                 startActivity(intent);
             }
         });
-        nextButton.setText(String.valueOf(viewModel.getCount()));
+
+        binding.livedataBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DataSharingBetweenFragmentsActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
